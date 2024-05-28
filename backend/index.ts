@@ -3,6 +3,7 @@ import cors from "cors";
 import sqlite3 from "sqlite3";
 import { open } from "sqlite";
 import bcrypt from "bcrypt";
+import path from "path";
 
 const app = express();
 app.use(cors());
@@ -293,6 +294,8 @@ app.get("/api/sessions", async (req: Request, res: Response) => {
     res.status(500).send("Error fetching sessions");
   }
 });
+
+app.use(express.static(path.join(path.resolve(), "dist")));
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
